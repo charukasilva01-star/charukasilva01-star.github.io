@@ -1,0 +1,14 @@
+#!/usr/bin/expect
+set timeout 120
+spawn surge . charukasilva.surge.sh
+expect {
+    "email:" {
+        send "charukaportfolio999@gmail.com\r"
+        exp_continue
+    }
+    "password:" {
+        send "portfolio123456\r"
+        exp_continue
+    }
+    eof
+}
