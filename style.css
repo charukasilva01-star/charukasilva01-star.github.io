@@ -398,7 +398,8 @@ body {
   .hero-left-text, .hero-right-button { order: 2; }
   .hero-center-avatar { order: 1; margin: 0 auto; }
   .hero-right-button { justify-content: center; }
-  .dense-gallery { grid-template-columns: 1fr; }
+  .dense-gallery { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+  .dense-gallery .gallery-item { min-height: 200px; }
   .marquee-item { min-width: 250px; height: 250px; }
 }
 @media (max-width: 480px) {
