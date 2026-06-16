@@ -125,7 +125,7 @@ button { background: none; border: none; cursor: pointer; color: inherit; font-f
    HERO
    ============================================================ */
 .hero {
-  position: relative; height: 100vh; display: flex; align-items: center; justify-content: center;
+  position: relative; height: 100vh; height: 100dvh; min-height: 600px; display: flex; align-items: center; justify-content: center;
 }
 .hero-text { position: absolute; text-align: center; z-index: 1; pointer-events: none; }
 .hero-line {
@@ -263,9 +263,13 @@ button { background: none; border: none; cursor: pointer; color: inherit; font-f
 
 /* Responsive */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
+  .nav { width: 90%; padding: 0 1rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.7rem; }
   .hero-line { font-size: clamp(3rem, 15vw, 7rem); }
   .hero-avatar { width: clamp(160px, 50vw, 260px); }
+  .hero-bottom { bottom: 8vh; }
+  .brand-logo { height: 40px; margin-right: 2rem; }
   .slideshow { width: 95%; border-radius: 20px; }
   .reel-full { width: min(92%, 340px); border-radius: 20px; }
   .reel-full.reel-wide { width: min(95%, 480px); }
