@@ -1,83 +1,158 @@
+// ============================================================
+//  PREMIUM ANIMATIONS & INTERACTIONS
+// ============================================================
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Custom Cursor
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
+gsap.registerPlugin(ScrollTrigger);
+
+// ---- HERO PARALLAX ----
+const heroTL = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.6,
+    }
+});
+heroTL.to("#h1", { y: -180, opacity: 0 }, 0);
+heroTL.to("#h2", { y: 180, opacity: 0 }, 0);
+heroTL.to("#hero-avatar", { scale: 0.5, y: 200, opacity: 0 }, 0);
+heroTL.to("#hero-bottom", { y: -40, opacity: 0 }, 0);
+heroTL.to("#scroll-ind", { opacity: 0 }, 0);
+
+// ---- NAV SCROLL STATE ----
+const nav = document.getElementById("nav");
+ScrollTrigger.create({
+    start: 80,
+    onUpdate: (self) => {
+        if (self.scroll() > 80) {
+            nav.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+        }
+    }
+});
+
+// ---- FADE-INS ----
+document.querySelectorAll('.fade-in').forEach(el => {
+    gsap.fromTo(el,
+        { y: 50, opacity: 0 },
+        {
+            y: 0, opacity: 1, duration: 1, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none reverse" }
+        }
+    );
+});
+
+// ============================================================
+//  SLIDESHOW — Auto-playing image carousel
+// ============================================================
+const slides = document.querySelectorAll('.slide');
+const progressBar = document.getElementById('slideshow-progress');
+const prevBtn = document.getElementById('slide-prev');
+const nextBtn = document.getElementById('slide-next');
+const currentDisplay = document.getElementById('slide-current');
+const totalDisplay = document.getElementById('slide-total');
+
+let currentSlide = 0;
+const totalSlides = slides.length;
+const SLIDE_DURATION = 3500; // ms per slide
+let slideTimer = null;
+let progressAnim = null;
+
+totalDisplay.textContent = totalSlides;
+
+function goToSlide(index) {
+    // Remove active from all
+    slides.forEach(s => s.classList.remove('active'));
     
-    // Disable custom cursor on touch devices
-    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    if (isTouchDevice) {
-        if(cursorDot) cursorDot.style.display = 'none';
-        if(cursorOutline) cursorOutline.style.display = 'none';
-        document.body.style.cursor = 'auto';
-    } else {
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            
-            // Dot follows exactly
-            if(cursorDot) {
-                cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
-            }
-            
-            // Outline follows with slight delay
-            if(cursorOutline) {
-                cursorOutline.animate({
-                    transform: `translate(${posX}px, ${posY}px)`
-                }, { duration: 500, fill: "forwards" });
-            }
-        });
-        
-        // Hover effects on interactive elements
-        const interactives = document.querySelectorAll('a, button, .grid-item, .marquee-item, .glass-pill');
-        interactives.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                if(cursorOutline) cursorOutline.classList.add('cursor-hover');
-                if(cursorDot) cursorDot.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                if(cursorOutline) cursorOutline.classList.remove('cursor-hover');
-                if(cursorDot) cursorDot.classList.remove('cursor-hover');
-            });
-        });
-    }
+    // Wrap around
+    currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
+    
+    // Activate
+    slides[currentSlide].classList.add('active');
+    currentDisplay.textContent = currentSlide + 1;
+    
+    // Reset progress
+    startProgress();
+}
 
-    // 2. Mouse-Reactive Spotlight
-    const heroMesh = document.querySelector('.hero-gradient-mesh');
-    if (heroMesh && !isTouchDevice) {
-        window.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 100;
-            const y = (e.clientY / window.innerHeight) * 100;
-            heroMesh.style.background = `
-                radial-gradient(circle at ${x}% ${y}%, rgba(80, 80, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at ${100-x}% ${100-y}%, rgba(40, 10, 120, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(10, 60, 100, 0.05) 0%, transparent 60%)
-            `;
-        });
-    }
+function nextSlide() { goToSlide(currentSlide + 1); }
+function prevSlide() { goToSlide(currentSlide - 1); }
 
-    // 3. Parallax Typography
-    const textLines = document.querySelectorAll('.massive-text-stacked');
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        if(textLines.length >= 2) {
-            // First line moves right
-            textLines[0].style.transform = `translateX(${scrolled * 0.2}px)`;
-            // Second line moves left
-            textLines[1].style.transform = `translateX(-${scrolled * 0.2}px)`;
+function startProgress() {
+    // Kill existing
+    if (progressAnim) progressAnim.kill();
+    
+    gsap.set(progressBar, { width: "0%" });
+    progressAnim = gsap.to(progressBar, {
+        width: "100%",
+        duration: SLIDE_DURATION / 1000,
+        ease: "none",
+        onComplete: nextSlide
+    });
+}
+
+// Start autoplay
+startProgress();
+
+// Button handlers
+prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); });
+nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); });
+
+// Touch swipe support for slideshow
+let touchStartX = 0;
+const slideshowEl = document.getElementById('slideshow');
+slideshowEl.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+slideshowEl.addEventListener('touchend', (e) => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(diff) > 50) {
+        if (diff < 0) nextSlide();
+        else prevSlide();
+    }
+});
+
+// ============================================================
+//  REELS — Tap to play/pause + Scroll autoplay
+// ============================================================
+const reels = document.querySelectorAll('.reel-full');
+
+reels.forEach(reel => {
+    const video = reel.querySelector('.reel-vid');
+    
+    // Tap to play/pause
+    reel.addEventListener('click', () => {
+        if (video.paused) {
+            video.play().then(() => {
+                reel.classList.add('playing');
+            }).catch(() => {});
+        } else {
+            video.pause();
+            reel.classList.remove('playing');
         }
     });
-
-    // 4. Scroll Reveals
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-    revealElements.forEach(el => revealObserver.observe(el));
+    
+    // Scroll-triggered autoplay
+    ScrollTrigger.create({
+        trigger: reel,
+        start: "top 70%",
+        end: "bottom 30%",
+        onEnter: () => {
+            video.play().then(() => {
+                reel.classList.add('playing');
+            }).catch(() => {});
+        },
+        onLeave: () => {
+            video.pause();
+            reel.classList.remove('playing');
+        },
+        onEnterBack: () => {
+            video.play().then(() => {
+                reel.classList.add('playing');
+            }).catch(() => {});
+        },
+        onLeaveBack: () => {
+            video.pause();
+            reel.classList.remove('playing');
+        },
+    });
 });

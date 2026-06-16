@@ -3,230 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charuka Silva | Creative Portfolio</title>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <title>Charuka Silva | Creative Director</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=23">
+    <link rel="stylesheet" href="style.css?v=300">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <!-- Creative Elements -->
 
+    <!-- Grain Overlay -->
+    <div class="grain"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <ul class="nav-links">
-                <li><a href="#posts" class="nav-link">POSTS</a></li>
-                <li><a href="#videos" class="nav-link">VIDEOS</a></li>
-                <li><a href="#about" class="nav-link">ABOUT</a></li>
-            </ul>
-            <a href="#contact" class="glass-pill">CONTACT ME <i class="fa-solid fa-arrow-right" style="margin-left:8px;"></i></a>
+    <!-- Floating Nav -->
+    <nav class="nav" id="nav">
+        <span class="nav-logo">CHARUKA.</span>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#reels">Reels</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero hero-upgraded">
-        <canvas id="matrix" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.15;"></canvas>
-        <!-- Foreground Massive Text -->
-        <div class="hero-bg-text-stacked">
-            <h1 class="massive-text-stacked reveal-up">HI, I'M CHARUKA</h1>
-            <h1 class="massive-text-stacked outline-text">SILVA</h1>
-        </div>
-        
-        <!-- Foreground Elements -->
-        <div class="hero-foreground">
-            <div class="hero-left-text">
-                <div class="bio-card">
-                    <p>A DIGITAL MARKETER & VIDEO PRODUCER PASSIONATE ABOUT CRAFTING BOLD AND MEMORABLE PROJECTS 😎</p>
+    <main>
+        <!-- ===== HERO ===== -->
+        <section class="hero">
+            <div class="hero-glow"></div>
+            <div class="hero-text">
+                <h1 class="hero-line" id="h1">CHARUKA</h1>
+                <h1 class="hero-line hero-outline" id="h2">SILVA</h1>
+            </div>
+            <div class="hero-avatar" id="hero-avatar">
+                <img src="assets/avatar_clean.png" alt="Charuka Silva">
+            </div>
+            <div class="hero-bottom" id="hero-bottom">
+                <p class="hero-role">Digital Marketer & Video Producer</p>
+                <p class="hero-tagline">5+ Brands · 2M+ Reach · 4X ROAS</p>
+            </div>
+            <div class="scroll-indicator" id="scroll-ind">
+                <div class="scroll-dot"></div>
+            </div>
+        </section>
+
+        <!-- ===== POSTS SLIDESHOW ===== -->
+        <section class="slideshow-section" id="work">
+            <div class="slideshow-header">
+                <p class="eyebrow fade-in">Social Campaigns</p>
+                <h2 class="headline fade-in">Work that speaks.</h2>
+            </div>
+            <div class="slideshow" id="slideshow">
+                <div class="slideshow-viewport">
+                    <div class="slide active"><img src="assets/new_posts/post_ramadan.jpg" alt="Ramadan"></div>
+                    <div class="slide"><img src="assets/new_posts/post_kiribath.jpg" alt="Kiribath"></div>
+                    <div class="slide"><img src="assets/new_posts/post_mosquito_red.jpg" alt="Mosquito Net"></div>
+                    <div class="slide"><img src="assets/new_posts/post_puja_yellow.jpg" alt="Puja Yellow"></div>
+                    <div class="slide"><img src="assets/new_posts/post_puja_night.jpg" alt="Puja Night"></div>
+                    <div class="slide"><img src="assets/pooja/post_pooja_net.jpg" alt="Pooja Net"></div>
+                    <div class="slide"><img src="assets/pooja/post_pooja_monk.jpg" alt="Monk"></div>
+                    <div class="slide"><img src="assets/pooja/post_pooja_offerings.jpg" alt="Offerings"></div>
+                    <div class="slide"><img src="assets/garage/IMG_2461.JPG" alt="Prado"></div>
+                    <div class="slide"><img src="assets/garage/IMG_2573_2.PNG" alt="Install"></div>
+                    <div class="slide"><img src="assets/rainflow/Rainflow.JPG" alt="Rainflow"></div>
+                    <div class="slide"><img src="assets/garage/IMG_2736_2.PNG" alt="Under Guard"></div>
+                    <div class="slide"><img src="assets/rainflow/IMG_2464.JPG" alt="Rainflow Print"></div>
+                    <div class="slide"><img src="assets/pooja/post_pooja_net_detail.jpg" alt="Net Detail"></div>
+                </div>
+                <div class="slideshow-progress" id="slideshow-progress"></div>
+                <button class="slide-btn slide-prev" id="slide-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="slide-btn slide-next" id="slide-next"><i class="fa-solid fa-chevron-right"></i></button>
+                <div class="slide-counter"><span id="slide-current">1</span> / <span id="slide-total">14</span></div>
+            </div>
+        </section>
+
+        <!-- ===== REELS: Vertical immersive feed ===== -->
+        <section class="reels-section" id="reels">
+            <div class="reels-header">
+                <p class="eyebrow fade-in">Cinematic Reels</p>
+                <h2 class="headline fade-in">Motion that moves.</h2>
+            </div>
+            <div class="reels-feed">
+                <div class="reel-full fade-in">
+                    <video loop muted playsinline preload="metadata" class="reel-vid">
+                        <source src="assets/pooja/v1c044g50000d6qhduvog65u01o7vcag.MP4" type="video/mp4">
+                    </video>
+                    <div class="reel-play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="reel-full reel-full-wide fade-in">
+                    <video loop muted playsinline preload="metadata" class="reel-vid">
+                        <source src="assets/rainflow/Rainflow_commercial_intro.mp4" type="video/mp4">
+                    </video>
+                    <div class="reel-play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="reel-full fade-in">
+                    <video loop muted playsinline preload="metadata" class="reel-vid">
+                        <source src="assets/pooja/v1c044g50000d6uik0vog65qck8t9rk0.MP4" type="video/mp4">
+                    </video>
+                    <div class="reel-play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="reel-full reel-full-wide fade-in">
+                    <video loop muted playsinline preload="metadata" class="reel-vid">
+                        <source src="assets/garage/Garage_eka_rat_guard_video_.mov">
+                    </video>
+                    <div class="reel-play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="reel-full fade-in">
+                    <video loop muted playsinline preload="metadata" class="reel-vid">
+                        <source src="assets/pooja/v14044g50000d60u6mvog65thvfbdva0.MP4" type="video/mp4">
+                    </video>
+                    <div class="reel-play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="reel-full reel-full-wide fade-in">
+                    <video loop muted playsinline preload="metadata" class="reel-vid">
+                        <source src="assets/garage/Garage_eka_under_guard_video_.mov">
+                    </video>
+                    <div class="reel-play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="reel-full fade-in">
+                    <video loop muted playsinline preload="metadata" class="reel-vid">
+                        <source src="assets/rainflow/Rainflow_tt_video_.mp4" type="video/mp4">
+                    </video>
+                    <div class="reel-play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="reel-full reel-full-wide fade-in">
+                    <video loop muted playsinline preload="metadata" class="reel-vid">
+                        <source src="assets/garage/2023_prado_150.mov">
+                    </video>
+                    <div class="reel-play-overlay"><i class="fa-solid fa-play"></i></div>
                 </div>
             </div>
-            
-            <div class="hero-center-avatar" id="avatar-container">
-                <img src="assets/avatar_clean.png" alt="3D Charuka Avatar" id="hero-avatar-img">
-            </div>
-            
-            <div class="avatar-right">
-                <div class="bio-card" style="text-align: left; max-width: 320px;">
-                    <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; color: #fff; line-height: 1.2;">🏆 5+ BRANDS SCALED</p>
-                    <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; color: #fff; line-height: 1.2;">🚀 2M+ ORGANIC REACH</p>
-                    <p style="font-size: 1.2rem; font-weight: 600; color: #fff; line-height: 1.2;">💸 4X ROAS</p>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section class="contact" id="contact">
+            <div class="contact-inner">
+                <p class="eyebrow fade-in">Get in touch</p>
+                <h2 class="contact-headline fade-in">Let's create<br>something iconic.</h2>
+                <div class="contact-btns fade-in">
+                    <a href="mailto:charukax@gmail.com" class="btn-solid"><i class="fa-solid fa-envelope"></i> Email</a>
+                    <a href="https://api.whatsapp.com/send?phone=94705887872" class="btn-ghost"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://linkedin.com/in/charuka-silva" target="_blank" class="btn-ghost"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
                 </div>
             </div>
-        </div>
+            <footer class="footer">&copy; 2026 Charuka Silva</footer>
+        </section>
+    </main>
 
-        <!-- Kinetic Ticker Tape -->
-        <div class="hero-ticker-container">
-            <div class="hero-ticker-track">
-                <span>✦ DIGITAL MARKETING ✦ VIDEO PRODUCTION ✦ CAMPAIGN STRATEGY ✦ MOTION DESIGN ✦ HIGH ROAS </span>
-                <span>✦ DIGITAL MARKETING ✦ VIDEO PRODUCTION ✦ CAMPAIGN STRATEGY ✦ MOTION DESIGN ✦ HIGH ROAS </span>
-                <span>✦ DIGITAL MARKETING ✦ VIDEO PRODUCTION ✦ CAMPAIGN STRATEGY ✦ MOTION DESIGN ✦ HIGH ROAS </span>
-                <span>✦ DIGITAL MARKETING ✦ VIDEO PRODUCTION ✦ CAMPAIGN STRATEGY ✦ MOTION DESIGN ✦ HIGH ROAS </span>
-            </div>
-        </div>
-    </header><section id="posts" class="section-spacing">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="massive-text reveal-up">SOCIAL POSTS</h2>
-    </div>
-    <div class="auto-carousel">
-      <div class="slides">
-        <div class="slide"><img src="assets/new_posts/post_ramadan.jpg" alt="Ramadan Post"></div>
-        <div class="slide"><img src="assets/new_posts/post_kiribath.jpg" alt="Kiribath Post"></div>
-        <div class="slide"><img src="assets/new_posts/post_mosquito_red.jpg" alt="Mosquito Net Post"></div>
-        <div class="slide"><img src="assets/new_posts/post_puja_yellow.jpg" alt="Puja Net Yellow"></div>
-        <div class="slide"><img src="assets/new_posts/post_puja_night.jpg" alt="Puja Net Night"></div>
-        <div class="slide"><img src="assets/pooja/post_pooja_net.jpg" alt="Pooja Net"></div>
-        <div class="slide"><img src="assets/pooja/post_pooja_monk.jpg" alt="Pooja Monk"></div>
-        <div class="slide"><img src="assets/pooja/post_pooja_offerings.jpg" alt="Pooja Offerings"></div>
-        <div class="slide"><img src="assets/garage/IMG_2461.JPG" alt="Garage Eka Prado"></div>
-        <div class="slide"><img src="assets/garage/IMG_2573_2.PNG" alt="Garage Eka Install"></div>
-        <div class="slide"><img src="assets/rainflow/Rainflow.JPG" alt="Rainflow Brand"></div>
-        <div class="slide"><img src="assets/garage/IMG_2736_2.PNG" alt="Garage Eka Under Guard"></div>
-        <div class="slide"><img src="assets/rainflow/IMG_2464.JPG" alt="Rainflow Print"></div>
-        <div class="slide"><img src="assets/pooja/post_pooja_net_detail.jpg" alt="Pooja Net Detail"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Creative Videos Section -->
-    <section id="videos" class="section-spacing" style="padding-top: 0;">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="massive-text reveal-up">CREATIVE REELS</h2>
-            </div>
-
-            <div class="dense-gallery video-gallery">
-                <div class="gallery-item item-tall"><video autoplay loop muted playsinline controls><source src="assets/pooja/v1c044g50000d6qhduvog65u01o7vcag.MP4" type="video/mp4"></video></div>
-                <div class="gallery-item item-wide"><video autoplay loop muted playsinline controls><source src="assets/rainflow/Rainflow_commercial_intro.mp4" type="video/mp4"></video></div>
-                <div class="gallery-item item-tall"><video autoplay loop muted playsinline controls><source src="assets/pooja/v1c044g50000d6uik0vog65qck8t9rk0.MP4" type="video/mp4"></video></div>
-                <div class="gallery-item"><video autoplay loop muted playsinline controls><source src="assets/garage/Garage_eka_rat_guard_video_.mov"></video></div>
-                <div class="gallery-item item-tall"><video autoplay loop muted playsinline controls><source src="assets/pooja/v14044g50000d60u6mvog65thvfbdva0.MP4" type="video/mp4"></video></div>
-                <div class="gallery-item"><video autoplay loop muted playsinline controls><source src="assets/garage/Garage_eka_under_guard_video_.mov"></video></div>
-                <div class="gallery-item item-tall"><video autoplay loop muted playsinline controls><source src="assets/rainflow/Rainflow_tt_video_.mp4" type="video/mp4"></video></div>
-                <div class="gallery-item item-wide"><video autoplay loop muted playsinline controls><source src="assets/garage/2023_prado_150.mov"></video></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section section-spacing theme-blue-white">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="massive-text reveal-up">ABOUT ME</h2>
-            </div>
-            
-            <div class="about-content-clean">
-                <p><strong>WITH OVER 5 YEARS OF EXPERIENCE IN DIGITAL MARKETING AND CREATIVE DIRECTION,</strong></p>
-                <p>I specialize in building campaigns that not only look visually stunning but perform exceptionally well.</p>
-                <p>I love collaborating with businesses to craft premium content, execute high-ROAS ads, and showcase true brand value.</p>
-                <br>
-                <a href="#contact" class="gradient-pill" style="margin-top: 20px;">LET'S CREATE</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & Socials -->
-    <section id="contact" class="section-spacing theme-blue-white" style="text-align: center; padding: 4rem 0;">
-        <div class="container">
-            <h2 class="massive-text" style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 2rem;">LET'S CONNECT</h2>
-            <div style="display: flex; justify-content: center; gap: 2rem; font-size: 2.5rem;">
-                <a href="mailto:charukax@gmail.com" class="social-link" title="Email"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://api.whatsapp.com/send?phone=94705887872" class="social-link" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://linkedin.com/in/charuka-silva" class="social-link" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" style="padding-top: 1rem; border-top: none;">
-        <p>&copy; 2026 Charuka Silva. All rights reserved.</p>
-    </footer>
-
-    <script src="avatar-animate.js"></script>
-
-    <!-- Reveal & Video Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Matrix Background Effect
-            const canvas = document.getElementById('matrix');
-            if (canvas) {
-                const ctx = canvas.getContext('2d');
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-
-                const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
-                const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                const nums = '0123456789';
-                const alphabet = katakana + latin + nums;
-
-                const fontSize = 16;
-                const columns = canvas.width / fontSize;
-                const drops = [];
-                for(let x = 0; x < columns; x++) drops[x] = 1;
-
-                const draw = () => {
-                    ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = '#0F0';
-                    ctx.font = fontSize + 'px monospace';
-
-                    for(let i = 0; i < drops.length; i++) {
-                        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                            drops[i] = 0;
-                        }
-                        drops[i]++;
-                    }
-                };
-                setInterval(draw, 30);
-                window.addEventListener('resize', () => {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                });
-            }
-
-            // Auto Carousel Infinite Scrolling
-            const carouselTrack = document.querySelector('.auto-carousel .slides');
-            if (carouselTrack) {
-                // Duplicate all slides for seamless CSS infinite loop
-                const slidesHtml = carouselTrack.innerHTML;
-                carouselTrack.innerHTML += slidesHtml;
-            }
-
-            // Reveal animations
-            const revealEls = document.querySelectorAll('.reveal, .reveal-up');
-            const ro = new IntersectionObserver((entries, obs) => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) {
-                        e.target.classList.add('active', 'is-revealed');
-                        obs.unobserve(e.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            revealEls.forEach(el => ro.observe(el));
-
-            // Scroll-triggered play/pause
-            const videos = document.querySelectorAll('video');
-            const vo = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) {
-                        e.target.play().catch(() => {});
-                    } else {
-                        e.target.pause();
-                    }
-                });
-            }, { threshold: 0.1 });
-            videos.forEach(v => {
-                v.muted = true;
-                vo.observe(v);
-            });
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
-
