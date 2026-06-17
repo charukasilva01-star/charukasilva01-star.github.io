@@ -284,16 +284,38 @@ button { background: none; border: none; cursor: pointer; color: inherit; font-f
 
 /* Responsive */
 @media (max-width: 768px) {
-  .nav { width: 90%; padding: 0 1rem; }
-  .nav-links { gap: 1rem; }
-  .nav-links a { font-size: 0.7rem; }
-  .hero-line { font-size: clamp(3rem, 15vw, 7rem); }
-  .hero-avatar { width: clamp(160px, 50vw, 260px); }
-  .hero-bottom { bottom: 8vh; }
-  .brand-logo { height: 40px; margin-right: 2rem; }
-  .slideshow { width: 95%; border-radius: 20px; }
-  .reel-full { width: min(92%, 340px); border-radius: 20px; }
-  .reel-full.reel-wide { width: min(95%, 480px); }
-  .slide-btn { width: 38px; height: 38px; font-size: 0.75rem; }
-  .contact-btns { flex-direction: column; align-items: center; }
+  /* Navigation */
+  .nav { width: max-content; padding: 0 1.5rem; height: 52px; border-radius: 999px; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.8rem; padding: 0.5rem 0; }
+  
+  /* Hero Section */
+  .hero-line { font-size: clamp(2.5rem, 13vw, 5rem); letter-spacing: -0.04em; }
+  .hero-avatar { width: clamp(150px, 45vw, 240px); }
+  .hero-bottom { bottom: 10dvh; }
+  .hero-role { font-size: 1rem; margin-bottom: 0.2rem; }
+  .hero-tagline { font-size: 0.75rem; }
+  
+  /* Brands Marquee */
+  .brands-title { font-size: 1rem; margin-bottom: 1rem; }
+  .brand-logo { height: 32px; margin-right: 2rem; }
+  .brands-wrapper { margin-top: 0; }
+  
+  /* Slideshow (Square like Instagram) */
+  .slideshow { width: 92%; aspect-ratio: 1 / 1; border-radius: 20px; }
+  .slide-btn { width: 40px; height: 40px; font-size: 0.8rem; }
+  
+  /* Reels Feed */
+  .reels-section { padding: 4rem 0 6rem; }
+  .reels-feed { gap: 2rem; padding: 0 1rem; }
+  .reel-full { width: 92%; max-width: 380px; border-radius: 20px; }
+  .reel-full.reel-wide { width: 95%; max-width: 480px; border-radius: 20px; }
+  .reel-vid { border-radius: 20px; }
+  .reel-overlay { border-radius: 20px; }
+  
+  /* Contact Section */
+  .contact { padding: 6rem 1.5rem; }
+  .contact-headline { font-size: clamp(2.2rem, 10vw, 4rem); margin-bottom: 2rem; }
+  .contact-btns { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; gap: 0.8rem; }
+  .btn-solid, .btn-ghost { width: 100%; justify-content: center; padding: 1rem 0; font-size: 0.95rem; }
 }
