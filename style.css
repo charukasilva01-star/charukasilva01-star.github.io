@@ -201,12 +201,13 @@ button { background: none; border: none; cursor: pointer; color: inherit; font-f
   z-index: 10;
 }
 .brands-title {
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  letter-spacing: 0.25em;
+  color: var(--pure-white);
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 /* ============================================================
